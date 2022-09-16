@@ -8,11 +8,10 @@ def test_1_group_product_delete(get_token_fixture):
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
-    data = [1]
-    dit = dict(zip(data))
+
 
     url = URL + "/v1/productClass/delete"
-    res = requests.post(url=url, headers=headers,json=dit).text
+    res = requests.post(url=url, headers=headers).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
