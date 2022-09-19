@@ -12,14 +12,14 @@ def test_1_send_dynamic(get_token_fixture):
         "status": 1,  #状态,0:关闭,1:开启
         "userId": 7,
         "columnId": 1,  #所属栏目id
-        "type": 1,   #	动态类型（1：文字；2：图片；3：视频）
-        "content": "今天买了很多球卡，运气很好，都是喜欢的球星",
+        "type": 2,   #	动态类型（1：文字；2：图片；3：视频）
+        "content": "球卡上面球星很帅",
         "address": "中国重庆",
         "label": "球星",
-        "views": 50,
-        "comments": 235,
-        "likes": 3256,
-        "collects": 256,
+        "views": 10,
+        "comments": 5 ,
+        "likes": 200,
+        "collects": 50,
         "state": 1  #1：审核中；2：审核通过；3：审核不通过
     }
     url = URL + "/v1/a/dynamic/add"
@@ -144,7 +144,7 @@ def test_8_dynamic_comment(get_token_fixture):
     }
     data = {
         "dynamicId": 2, #动态id
-        "content": "你这动态发的内容太好了!" #评论内容
+        "content": "动态评论!" #评论内容
     }
     url = URL + "/v1/a/dynamic/addComment"
     res = requests.post(url=url, headers=headers, json=data).text
@@ -162,7 +162,7 @@ def test_9_comment_reply(get_token_fixture):
     data = {
         "type": 2,  #1：直接回复；2：回复某个用户
         "commentId": 8,
-        "content": "嗯，对对对，他这动态是发的真好"
+        "content": "评论回复"
     }
     url = URL + "/v1/a/dynamic/addReplyComment"
     res = requests.post(url=url, headers=headers, json=data).text

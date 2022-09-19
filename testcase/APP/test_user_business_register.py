@@ -118,6 +118,52 @@ def test_1_acount_detail(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
+def test_1_add_alter_address(get_token_fixture):
+    """添加、修改地址"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "status": 1, #状态,0:关闭,1:开启
+        "userId": 7,
+        "name": "测试用户lucky",
+        "phone": "18875272518",
+        "areaCode": "400000000",
+        "area": "中国重庆",
+        "address": "重庆市渝北区两江新区",
+        "isDefault": 1 #是否默认（1：是；2：否）
+    }
+    url = URL + "/v1/a/user/addReceive"
+    res = requests.post(url=url, headers=headers,json=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+
+def test_1_my__address(get_token_fixture):
+    """添加、修改地址"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "status": 1, #状态,0:关闭,1:开启
+        "userId": 7,
+        "name": "测试用户lucky",
+        "phone": "18875272518",
+        "areaCode": "400000000",
+        "area": "中国重庆",
+        "address": "重庆市渝北区两江新区",
+        "isDefault": 1 #是否默认（1：是；2：否）
+    }
+    url = URL + "/v1/a/user/addReceive"
+    res = requests.post(url=url, headers=headers,json=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+
 
 
 
