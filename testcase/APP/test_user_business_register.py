@@ -1,5 +1,5 @@
 import requests,json,pytest
-URL = "http://192.168.110.173:8885"
+URL = "http://192.168.110.244:8885"
 
 def test_1_register(get_token_fixture):
     """注册"""
@@ -91,7 +91,7 @@ def test_2_business_settled(get_token_fixture):
         "checkUserId": 0,
         "checkTime": "",
         "remark": "申请商家",
-        "reason": "资料齐全，通过"
+        "reason": "资料齐全"
     }
     url = URL + "/v1/a/user/userBusinessApply"
     res = requests.post(url=url, headers=headers, json=data).text
@@ -103,7 +103,7 @@ def test_1_acount_detail(get_token_fixture):
     """账户明细"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf8",
+        "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
     data = {
@@ -117,19 +117,6 @@ def test_1_acount_detail(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

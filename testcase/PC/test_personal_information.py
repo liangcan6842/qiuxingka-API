@@ -1,5 +1,5 @@
 import pytest,requests,json
-URL = "http://192.168.110.173:8885"
+URL = "http://192.168.110.244:8885"
 
 def test_1_select_personal_information(get_token_fixture):
     """查询个人信息"""

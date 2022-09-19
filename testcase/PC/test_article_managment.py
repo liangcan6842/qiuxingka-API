@@ -1,5 +1,5 @@
 import pytest,requests,json
-URL = "http://192.168.110.173:8885"
+URL = "http://192.168.110.244:8885"
 
 def test_1_add_article(get_token_fixture):
     """文章新增、修改"""
