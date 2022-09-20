@@ -1,5 +1,5 @@
 import requests,json,pytest
-URL = "http://192.168.110.244:8885"
+URL = "http://192.168.110.173:8885"
 
 def test_1_register(get_token_fixture):
     """注册"""
@@ -68,7 +68,46 @@ def test_1_my_homePage(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-
+def test_1_my_balance(get_token_fixture):
+    """我的余额"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    url = URL + "/v1/a/user/myBalance"
+    res = requests.post(url=url, headers=headers).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_1_my_integration(get_token_fixture):
+    """我的积分"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    url = URL + "/v1/a/user/myIntegral"
+    res = requests.post(url=url, headers=headers).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_1_integration_detail(get_token_fixture):
+    """积分明细"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "limit": 10,
+        "page": 1
+    }
+    url = URL + "/v1/a/user/integralList"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
 def test_2_business_settled(get_token_fixture):
     """商家入驻"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
@@ -128,11 +167,11 @@ def test_1_add_alter_address(get_token_fixture):
     data = {
         "status": 1, #状态,0:关闭,1:开启
         "userId": 7,
-        "name": "测试用户lucky",
+        "name": "测试用户地址",
         "phone": "18875272518",
         "areaCode": "400000000",
         "area": "中国重庆",
-        "address": "重庆市渝北区两江新区",
+        "address": "重庆市南岸区",
         "isDefault": 1 #是否默认（1：是；2：否）
     }
     url = URL + "/v1/a/user/addReceive"
@@ -140,26 +179,50 @@ def test_1_add_alter_address(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-
-def test_1_my__address(get_token_fixture):
-    """添加、修改地址"""
+def test_1_alter_default_address(get_token_fixture):
+    """修改默认地址"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
     data = {
-        "status": 1, #状态,0:关闭,1:开启
-        "userId": 7,
-        "name": "测试用户lucky",
-        "phone": "18875272518",
-        "areaCode": "400000000",
-        "area": "中国重庆",
-        "address": "重庆市渝北区两江新区",
-        "isDefault": 1 #是否默认（1：是；2：否）
+        "id": 1, #地址id
+        "isDefault": 2  #是否默认（1：是；2：否）
     }
-    url = URL + "/v1/a/user/addReceive"
+    url = URL + "/v1/a/user/updateReceiveIsDefault"
     res = requests.post(url=url, headers=headers,json=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_1_delete_address(get_token_fixture):
+    """删除地址"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "id": 1 #地址id
+    }
+    url = URL + "/v1/a/user/deleteReceive"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_1_my_receipt_address(get_token_fixture):
+    """我的收货地址"""
+    # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "limit": 11,
+        "page": 1,
+    }
+    url = URL + "/v1/a/user/myReceive"
+    res = requests.post(url=url, headers=headers,params=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200

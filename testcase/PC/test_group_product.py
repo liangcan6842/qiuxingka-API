@@ -1,5 +1,5 @@
 import pytest,requests,json
-URL = "http://192.168.110.244:8885"
+URL = "http://192.168.110.173:8885"
 
 def test_1_group_product_delete(get_token_fixture):
     """组团产品删除"""

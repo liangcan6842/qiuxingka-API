@@ -1,5 +1,5 @@
 import pytest,requests,json
-URL = "http://192.168.110.244:8885"
+URL = "http://192.168.110.173:8885"
 def test_1_add_business(get_token_fixture):
     """新增商家"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
@@ -31,7 +31,7 @@ def test_1_add_business(get_token_fixture):
     assert res["code"] == 200
 
 def test_2_page_select_business(get_token_fixture):
-    """商家审核"""
+    """分页查询商家"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf8",
@@ -78,15 +78,15 @@ def test_2_business_audit_list(get_token_fixture):
         "Authorization": get_token_fixture
     }
     data = {
-        "limit":"10",
-        "page":"1",
+        "limit":10,
+        "page":1,
         "startTime":"",
         "endTime":"",
         "shopName":"",
         "phone":"",
-        "state":"1" #状态（1：审核中；2：已通过；3：已拒绝）
+        "state":1 #状态（1：审核中；2：已通过；3：已拒绝）
     }
-    url = URL + "/v1/webBusniess/businessApplyList"
+    url = URL + "/v1/webBusiness/businessApplyList"
     res = requests.get(url=url, headers=headers, params=data).text
     res = json.loads(res)
     print(res)

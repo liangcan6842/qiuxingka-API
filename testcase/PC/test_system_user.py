@@ -1,5 +1,5 @@
 import pytest,requests,json
-URL = "http://192.168.110.244:8885"
+URL = "http://192.168.110.173:8885"
 def test_1_add_user(get_token_fixture):
     """新增用户"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中

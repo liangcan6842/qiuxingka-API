@@ -1,7 +1,7 @@
 import pytest
 import requests
 import json
-URL = "http://192.168.110.244:8885"
+URL = "http://192.168.110.173:8885"
 
 @pytest.fixture(scope="session")
 def get_token_fixture():
