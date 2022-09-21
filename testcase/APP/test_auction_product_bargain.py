@@ -11,7 +11,7 @@ def test_1_add_bargain(get_token_fixture):
     data = {
         "status": 1,  #	状态,0:关闭,1:开启
         "auctionProductId": 2,
-        "price": 67,  #价格
+        "price": 56,  #价格
         "remark": "议价", #备注
         "fromUserId": 7,  #消息发送人id
         "fromUserNickName": 0, #消息发送人名称

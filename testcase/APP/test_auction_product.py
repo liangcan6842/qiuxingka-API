@@ -132,7 +132,7 @@ def test_7_whether_pay_margin(get_token_fixture):
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
-    data = {"auctionProductId":1 }
+    data = {"auctionProductId":3 }
     url = URL + "/v1/auctionProduct/isPayEarnest"
     res = requests.get(url=url, headers=headers,params=data).text
     res = json.loads(res)
