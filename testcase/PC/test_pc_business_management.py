@@ -9,7 +9,7 @@ def test_1_add_business(get_token_fixture):
     }
     data = {
             "status": 1,
-            "userId": 6,
+            "userId": 7,
             "shopName": "球卡店铺",
             "areaCode": "12345678",
             "area": "意大利",

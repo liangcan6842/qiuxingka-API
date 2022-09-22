@@ -1,4 +1,4 @@
-import requests,json,pytest
+import requests,json,pytest,allure,os
 URL = "http://192.168.110.173:8885"
 
 def test_1_send_dynamic(get_token_fixture):
@@ -287,4 +287,12 @@ def test_16_colum_type_list(get_token_fixture):
     assert res["code"] == 200
 
 if __name__ == '__main__':
-    pytest.main()
+    # 生成配置信息 "-s 代表可以将执行成功的案例日志打印出来 ; -q+文件执行路径 代表只需要执行的文件"
+    pytest.main(['-s', '-q', r'C:\Users\Administrator\Desktop\qiuxingka-API\testcase\APP\test_community.py::test_15_dynamic_comment_list', '--alluredir',
+                 './report/xml'])
+    # os模块运行allure命令，来生成html格式的报告（根据刚刚生成的配置信息）
+    os.system("D:/Python3.10.4/Lib/site-packages/allure-2.19.0/bin/allure.bat "
+    "generate "
+    "C:/Users/Administrator/Desktop/qiuxingka-API/report/xml "
+    "-o "
+    "C:/Users/Administrator/Desktop/qiuxingka-API/report/html")

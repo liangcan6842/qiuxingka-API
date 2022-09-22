@@ -22,7 +22,7 @@ def test_1_register(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_alter_personal_information(get_token_fixture):
+def test_2_alter_personal_information(get_token_fixture):
     """修改个人资料"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -41,7 +41,7 @@ def test_1_alter_personal_information(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_get_user_message(get_token_fixture):
+def test_3_get_user_message(get_token_fixture):
     """获取登录用户基本信息"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -53,7 +53,7 @@ def test_1_get_user_message(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_my_homePage(get_token_fixture):
+def test_4_my_homePage(get_token_fixture):
     """我的主页"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -65,7 +65,19 @@ def test_1_my_homePage(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_other_homePage(get_token_fixture):
+def test_5_alter_background_pictrue(get_token_fixture):
+    """修改背景图"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    url = URL + "/v1/a/user/changebackImg"
+    res = requests.post(url=url, headers=headers).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_6_other_homePage(get_token_fixture):
     """他人主页"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -78,7 +90,7 @@ def test_1_other_homePage(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_my_integral(get_token_fixture):
+def test_7_my_integral(get_token_fixture):
     """我的积分"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -90,7 +102,7 @@ def test_1_my_integral(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_integral_detail(get_token_fixture):
+def test_8_integral_detail(get_token_fixture):
     """积分明细"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -106,7 +118,7 @@ def test_1_integral_detail(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_integral_leaderboard(get_token_fixture):
+def test_9_integral_leaderboard(get_token_fixture):
     """积分排行榜"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -122,7 +134,7 @@ def test_1_integral_leaderboard(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_my_balance(get_token_fixture):
+def test_10_my_balance(get_token_fixture):
     """我的余额"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -134,7 +146,7 @@ def test_1_my_balance(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_withdrawal(get_token_fixture):
+def test_11_withdrawal(get_token_fixture):
     """提现"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -151,7 +163,7 @@ def test_1_withdrawal(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_withdrawal_record(get_token_fixture):
+def test_12_withdrawal_record(get_token_fixture):
     """提现记录"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -169,7 +181,39 @@ def test_withdrawal_record(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_my_coupon(get_token_fixture):
+def test_13_according_year_month_get_withdrawal_amount(get_token_fixture):
+    """根据年月份获取总提现金额"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "year":2022 ,
+        "month":9
+    }
+    url = URL + "/v1/a/user/statisticsPutforword"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_14_according_year_month_get_total_amount(get_token_fixture):
+    """根据年月份获取收支总额"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "year":2022 ,
+        "month":9
+    }
+    url = URL + "/v1/a/user/statisticsAccountDetails"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_15_my_coupon(get_token_fixture):
     """我的优惠券"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -186,7 +230,7 @@ def test_1_my_coupon(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_coupon_code_receive(get_token_fixture):
+def test_16_coupon_code_receive(get_token_fixture):
     """优惠券兑换码领取"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -201,7 +245,7 @@ def test_1_coupon_code_receive(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_my_integration(get_token_fixture):
+def test_17_my_integration(get_token_fixture):
     """我的积分"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -213,7 +257,7 @@ def test_1_my_integration(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_integration_detail(get_token_fixture):
+def test_18_integration_detail(get_token_fixture):
     """积分明细"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -229,7 +273,7 @@ def test_1_integration_detail(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_2_business_settled(get_token_fixture):
+def test_19_business_settled(get_token_fixture):
     """商家入驻"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -258,7 +302,7 @@ def test_2_business_settled(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_acount_detail(get_token_fixture):
+def test_20_acount_detail(get_token_fixture):
     """账户明细"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -276,7 +320,7 @@ def test_1_acount_detail(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_add_alter_address(get_token_fixture):
+def test_21_add_alter_address(get_token_fixture):
     """添加、修改地址"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -298,7 +342,7 @@ def test_1_add_alter_address(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_alter_default_address(get_token_fixture):
+def test_22_alter_default_address(get_token_fixture):
     """修改默认地址"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -314,7 +358,7 @@ def test_1_alter_default_address(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_delete_address(get_token_fixture):
+def test_23_delete_address(get_token_fixture):
     """删除地址"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -329,7 +373,7 @@ def test_1_delete_address(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_my_receipt_address(get_token_fixture):
+def test_24_my_receipt_address(get_token_fixture):
     """我的收货地址"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -345,7 +389,7 @@ def test_1_my_receipt_address(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_setting_detail(get_token_fixture):
+def test_25_setting_detail(get_token_fixture):
     """设置详情"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -357,7 +401,7 @@ def test_1_setting_detail(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_focus_on(get_token_fixture):
+def test_26_focus_on(get_token_fixture):
     """关注"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -370,7 +414,7 @@ def test_1_focus_on(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_cancel_focus_on(get_token_fixture):
+def test_27_cancel_focus_on(get_token_fixture):
     """取消关注"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -383,7 +427,7 @@ def test_1_cancel_focus_on(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_focus_on_list(get_token_fixture):
+def test_28_focus_on_list(get_token_fixture):
     """关注列表"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -401,7 +445,7 @@ def test_1_focus_on_list(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_pull_black(get_token_fixture):
+def test_29_pull_black(get_token_fixture):
     """拉黑"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -414,7 +458,24 @@ def test_1_pull_black(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_cancel_pull_black(get_token_fixture):
+def test_30_pull_black_list(get_token_fixture):
+    """拉黑列表"""
+    # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "limit":8,
+        "page":1,
+        "nickName":"" #客户列表
+    }
+    url = URL + "/v1/a/user/blackList"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_31_cancel_pull_black(get_token_fixture):
     """取消拉黑"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -427,7 +488,31 @@ def test_1_cancel_pull_black(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_fans_list(get_token_fixture):
+def test_32_tip_off(get_token_fixture):
+    """举报"""
+    # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    data = {
+        "status": 0, #状态,0:关闭,1:开启
+        "userId": 0, #举报用户
+        "type": 0,  #举报类型（1：用户；2：社区；3：直播）
+        "relationId": 0,  #举报相关联id
+        "reason": "",
+        "content": "",
+        "img": "", #图片地址
+        "state": 0, #1：待处理；2：已处理
+        "remark": "", #处理备注
+        "ruserId": 0
+    }
+    url = URL + "/v1/a/user/report"
+    res = requests.post(url=url, headers=headers,params=data).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
+def test_33_fans_list(get_token_fixture):
     """粉丝列表"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {
@@ -437,7 +522,7 @@ def test_1_fans_list(get_token_fixture):
     data = {
         "limit":8,
         "page":1,
-        "userId":8,
+        "userId":7,
         "nickName":""
     }
     url = URL + "/v1/a/user/nlogin/fans"
@@ -445,7 +530,7 @@ def test_1_fans_list(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_1_column_list(get_token_fixture):
+def test_34_column_list(get_token_fixture):
     """栏目列表"""
     # 通过Fixture函数获取get_token_ fixture值，即token，再将token添加到请求头中
     headers = {

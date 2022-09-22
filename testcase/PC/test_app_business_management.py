@@ -8,15 +8,15 @@ def test_1_business_audit_list(get_token_fixture):
         "Authorization": get_token_fixture
     }
     data = {
-        "limit": "10",
-        "page": "1",
-        "startTime": "",
-        "endTime": "",
-        "shopName": "", #店铺名称
-        "phone": "",
-        "state": ""   #1：审核中；2：已通过；3：已拒绝
+        "limit": 10,
+        "page": 1,
+        # "startTime": "",
+        # "endTime": "",
+        # "shopName": "", #店铺名称
+        # "phone": ""
+        "state": 0   #1：审核中；2：已通过；3：已拒绝
     }
-    url = URL + "/v1/webBusniess/businessApplyList"
+    url = URL + "/v1/webBusiness/businessApplyList"
     res = requests.get(url=url, headers=headers, params=data).text
     res = json.loads(res)
     print(res)

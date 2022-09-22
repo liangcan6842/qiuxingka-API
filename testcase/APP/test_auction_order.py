@@ -38,7 +38,7 @@ def test_2_delete_order(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_select_order(get_token_fixture):
+def test_3_select_order(get_token_fixture):
     """查询订单"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -46,8 +46,8 @@ def test_2_select_order(get_token_fixture):
         "Authorization": get_token_fixture
     }
     data = {
-        "auctionProductId": 2,  # 拍卖产品id
-        "orderType": 4  # 订单类型 1-保证金，2-一口价，3-竞价，4-议价
+        "auctionProductId": 3,  # 拍卖产品id
+        "orderType": 3  # 订单类型 1-保证金，2-一口价，3-竞价，4-议价
     }
     url = URL + "/v1/auctionOrder/orderType"
     res = requests.get(url=url, headers=headers,params=data).text
@@ -55,7 +55,7 @@ def test_2_select_order(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_auction_user_paid_orderMessage(get_token_fixture):
+def test_4_auction_user_paid_orderMessage(get_token_fixture):
     """从查询拍卖用户已支付订单"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -72,7 +72,7 @@ def test_2_auction_user_paid_orderMessage(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_order_pay_operate(get_token_fixture):
+def test_5_order_pay_operate(get_token_fixture):
     """订单支付操作"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -89,7 +89,7 @@ def test_2_order_pay_operate(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_wechat_auction_product_pay(get_token_fixture):
+def test_6_wechat_auction_product_pay(get_token_fixture):
     """微信拍卖产品回调"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -102,7 +102,7 @@ def test_2_wechat_auction_product_pay(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_alipay_auction_product_pay(get_token_fixture):
+def test_7_alipay_auction_product_pay(get_token_fixture):
     """支付宝拍卖产品回调"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -115,7 +115,7 @@ def test_2_alipay_auction_product_pay(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_select_auction_product_detail(get_token_fixture):
+def test_8_select_auction_product_detail(get_token_fixture):
     """查询拍卖产品详情"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -131,7 +131,7 @@ def test_2_select_auction_product_detail(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_buyer_sure_receipt(get_token_fixture):
+def test_9_buyer_sure_receipt(get_token_fixture):
     """查询拍卖产品详情"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
