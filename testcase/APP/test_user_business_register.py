@@ -496,19 +496,19 @@ def test_32_tip_off(get_token_fixture):
         "Authorization": get_token_fixture
     }
     data = {
-        "status": 0, #状态,0:关闭,1:开启
-        "userId": 0, #举报用户
-        "type": 0,  #举报类型（1：用户；2：社区；3：直播）
-        "relationId": 0,  #举报相关联id
-        "reason": "",
-        "content": "",
-        "img": "", #图片地址
-        "state": 0, #1：待处理；2：已处理
-        "remark": "", #处理备注
-        "ruserId": 0
+        "status": 1, #状态,0:关闭,1:开启
+        "userId": 7, #举报用户
+        "type": 1,  #举报类型（1：用户；2：社区；3：直播）
+        "relationId": 8,  #举报相关联id
+        "reason": "违反规则",
+        "content": "发布不良信息，造成恶劣影响",
+        "img": "1234", #图片地址
+        "state": 1, #1：待处理；2：已处理
+        "remark": "希望尽快处理", #处理备注
+        "ruserId": 8 #被举报用户
     }
     url = URL + "/v1/a/user/report"
-    res = requests.post(url=url, headers=headers,params=data).text
+    res = requests.post(url=url, headers=headers,json=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
