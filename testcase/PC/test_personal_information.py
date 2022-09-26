@@ -1,7 +1,7 @@
 import pytest,requests,json
 URL = "http://192.168.110.173:8885"
 
-def test_1_select_personal_information(get_token_fixture):
+def test_1_query_personal_information(get_token_fixture):
     """查询个人信息"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -27,7 +27,7 @@ def test_2_alter_password(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_3_select_permission(get_token_fixture):
+def test_3_query_permission(get_token_fixture):
     """查询我的权限"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

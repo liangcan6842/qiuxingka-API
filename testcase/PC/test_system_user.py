@@ -20,7 +20,7 @@ def test_1_add_user(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_select_user(get_token_fixture):
+def test_2_query_user(get_token_fixture):
     """查询用户"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -34,7 +34,7 @@ def test_2_select_user(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_3_select_user_list(get_token_fixture):
+def test_3_query_user_list(get_token_fixture):
     """查询用户列表"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

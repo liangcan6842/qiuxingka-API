@@ -24,7 +24,7 @@ def test_1_add_material(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_3_select_material(get_token_fixture):
+def test_3_query_material(get_token_fixture):
     """分页查询材料"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

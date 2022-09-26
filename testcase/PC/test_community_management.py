@@ -115,7 +115,7 @@ def test_7_community_classity_add(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_8_community_classity_select_page(get_token_fixture):
+def test_8_community_classity_query_page(get_token_fixture):
     """社区分类分页查询"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

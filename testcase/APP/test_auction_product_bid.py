@@ -17,7 +17,7 @@ def test_1_add_bid(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_2_select_bid_list(get_token_fixture):
+def test_2_query_bid_list(get_token_fixture):
     """竞价列表查询"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

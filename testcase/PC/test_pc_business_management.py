@@ -30,7 +30,7 @@ def test_1_add_business(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_page_select_business(get_token_fixture):
+def test_2_page_query_business(get_token_fixture):
     """分页查询商家"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

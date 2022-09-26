@@ -1,85 +1,81 @@
 import pytest,requests,json
 URL = "http://192.168.110.173:8885"
 
-def test_1_add_auction_card_type(get_token_fixture):
-    """新增拍卖卡类型"""
+def test_1_add_series(get_token_fixture):
+    """新增、修改系列"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
     data = {
-        "status": 1, #状态,0:关闭,1:开启
-        "name": "shhj球卡" #拍卖类型名称
+        "id": 3, #修改必传
+        "name": "924系列", #系列名称
+        "seasonId": 2, #赛季id
+        "motionId": 2, #运动id
+        "firmId": 3 #厂商id
     }
-    url = URL + "/v1/auctionCardType/add"
+    url = URL + "/v1/cardSeries/add"
     res = requests.post(url=url, headers=headers,json=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
 
-def test_2_auction_card_edit(get_token_fixture):
-    """拍卖卡编辑"""
+def test_2_delete_series(get_token_fixture):
+    """删除系列"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
-    data = {
-        "id":3,
-        "status": 1, #状态,0:关闭,1:开启
-        "name": "shhj球卡dfg" #拍卖卡类型名称
-    }
-    url = URL + "/v1/auctionCardType/edit"
+    data = [4]
+    url = URL + "/v1/cardSeries/delete"
     res = requests.post(url=url, headers=headers,json=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
 
-def test_3_auction_card_alter_state(get_token_fixture):
-    """拍卖卡修改状态"""
+def test_3_pagination_query_series(get_token_fixture):
+    """分页查询系列"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
     data = {
-        "id": 3, #拍卖卡类型id
-        "status":0   #状态, 0: 关闭, 1: 开启
+        "page": 1,
+        "limit": 10,
+        # "name": 2,  #系列名称
+        # "seasonId": 0,  # 赛季id
+        # "motionId": 0,  # 运动id
+        # "firmId": 0  # 厂商id
+        # "status": 1,  #状态,0:关闭,1:开启
+        # "startTime": "",
+        # "endTime": ""
     }
-    url = URL + "/v1/auctionCardType/update"
+    url = URL + "/v1/cardSeries/getPage"
     res = requests.get(url=url, headers=headers,params=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
 
-def test_4_auction_card_type_delete(get_token_fixture):
-    """拍卖卡类型删除"""
-    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
-    headers = {
-        "Content-Type": "application/json;charset=utf8",
-        "Authorization": get_token_fixture
-    }
-    data = [3]
-    url = URL + "/v1/auctionCardType/del"
-    res = requests.post(url=url, headers=headers,json=data).text
-    res = json.loads(res)
-    print(res)
-    assert res["code"] == 200
-
-def test_5_auction_card_type_list_query(get_token_fixture):
-    """拍卖球卡类型列表查询"""
+def test_4_not_pagination_query_series(get_token_fixture):
+    """未分页查询系列"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
     data = {
-        "limit":"10",
-        "page":"1",
-        "name":"", #玩法名称
+        # "name": 2,  #系列名称
+        # "seasonId": 0,  # 赛季id
+        # "motionId": 0,  # 运动id
+        # "firmId": 0  # 厂商id
+        # "status": 1,  #状态,0:关闭,1:开启
+        # "startTime": "",
+        # "endTime": ""
     }
-    url = URL + "/v1/auctionCardType/page"
+    url = URL + "/v1/cardSeries/getList"
     res = requests.get(url=url, headers=headers,params=data).text
     res = json.loads(res)
     print(res)

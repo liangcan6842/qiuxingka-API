@@ -40,7 +40,7 @@ def test_1_add_auction_product(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_select_auction_product_detail_businessMessage(get_token_fixture):
+def test_2_query_auction_product_detail_businessMessage(get_token_fixture):
     """查看拍卖产品详情，商家信息"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -54,7 +54,7 @@ def test_2_select_auction_product_detail_businessMessage(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_3_select_auction_product_list(get_token_fixture):
+def test_3_query_auction_product_list(get_token_fixture):
     """查看拍卖产品列表"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -77,7 +77,7 @@ def test_3_select_auction_product_list(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_4_select_my_auction_list(get_token_fixture):
+def test_4_query_my_auction_list(get_token_fixture):
     """查看我的拍卖列表"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -111,7 +111,7 @@ def test_5_get_latest_price_message(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_6_select_auction_productDetail(get_token_fixture):
+def test_6_query_auction_productDetail(get_token_fixture):
     """查看拍卖产品详情"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

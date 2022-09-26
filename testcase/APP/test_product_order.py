@@ -1,7 +1,7 @@
 import requests,json,pytest
 URL = "http://192.168.110.173:8885"
 
-def test_1_select_auction_product_detail(get_token_fixture):
+def test_1_query_auction_product_detail(get_token_fixture):
     """查看拍卖产品详情"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -18,7 +18,7 @@ def test_1_select_auction_product_detail(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_select_auction_product_list(get_token_fixture):
+def test_2_query_auction_product_list(get_token_fixture):
     """查看拍卖产品列表"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

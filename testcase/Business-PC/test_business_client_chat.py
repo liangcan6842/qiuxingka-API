@@ -1,65 +1,46 @@
-import pytest,requests,json
+import requests,json,pytest
 URL = "http://192.168.110.173:8885"
-def test_1_group_product_delete(get_token_fixture):
-    """组团产品删除"""
-    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
-    headers = {
-        "Content-Type": "application/json;charset=utf8",
-        "Authorization": get_token_fixture
-    }
-    data =[]
-    url = URL + "/v1/productClass/delete"
-    res = requests.post(url=url, headers=headers,json=data).text
-    res = json.loads(res)
-    print(res)
-    assert res["code"] == 200
 
-def test_2_add_resive(get_token_fixture):
-    """组团产品添加、修改"""
+def test_1_query_chat_message(get_token_fixture):
+    """查询聊天信息"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
     data = {
-        #"id": 0,  #修改时必传
-        "name": "组团产品1"
+        "messageListId": 1,  #消息id
+        "limit":10 ,
+        "page":1
     }
-    url = URL + "/v1/productClass/add"
-    res = requests.post(url=url, headers=headers, json=data).text
-    res = json.loads(res)
-    print(res)
-    assert res["code"] == 200
-
-def test_2_pagination_query(get_token_fixture):
-    """分页查询"""
-    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
-    headers = {
-        "Content-Type": "application/json;charset=utf8",
-        "Authorization": get_token_fixture
-    }
-    data = {
-        "limit": 10,
-        "page": 1,
-        "startTime": "",
-        "endTime": "",
-        "name": "",
-        "status": ""
-    }
-    url = URL + "/v1/productClass/getPage"
+    url = URL + "/v1/msgRecord/page"
     res = requests.get(url=url, headers=headers, params=data).text
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
 
+def test_1_query_list(get_token_fixture):
+    """查询列表"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    url = URL + "/v1/merchant/messageList"
+    res = requests.get(url=url, headers=headers).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200
 
-
-
-
-
-
-
-
-
-
-
+def test_1_query_pc_customer_list(get_token_fixture):
+    """查询总后台客服列表"""
+    # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
+    headers = {
+        "Content-Type": "application/json;charset=utf8",
+        "Authorization": get_token_fixture
+    }
+    url = URL + "/v1/background/messageList"
+    res = requests.get(url=url, headers=headers).text
+    res = json.loads(res)
+    print(res)
+    assert res["code"] == 200

@@ -26,7 +26,7 @@ def test_1_post_order(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_2_select_post_order(get_token_fixture):
+def test_2_query_post_order(get_token_fixture):
     """查询邮寄订单"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

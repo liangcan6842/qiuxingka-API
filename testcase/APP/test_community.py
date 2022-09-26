@@ -1,6 +1,8 @@
 import requests,json,pytest,allure,os
 URL = "http://192.168.110.173:8885"
-
+@allure.feature("app社区测试")
+@allure.story("这是社区模块发动态测试用例")
+@allure.description("发布动态成功场景")
 def test_1_send_dynamic(get_token_fixture):
     """发动态"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
@@ -269,7 +271,6 @@ def test_15_dynamic_comment_list(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-
 def test_16_colum_type_list(get_token_fixture):
     """栏目类型列表"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
@@ -288,11 +289,11 @@ def test_16_colum_type_list(get_token_fixture):
 
 if __name__ == '__main__':
     # 生成配置信息 "-s 代表可以将执行成功的案例日志打印出来 ; -q+文件执行路径 代表只需要执行的文件"
-    pytest.main(['-s', '-q', r'C:\Users\Administrator\Desktop\qiuxingka-API\testcase\APP\test_community.py::test_15_dynamic_comment_list', '--alluredir',
-                 './report/xml'])
+    pytest.main(['-s', '-q', r'C:\Users\Administrator\Desktop\qiuxingka-API\testcase\APP\test_community.py', '--alluredir',
+                 'C:/Users/Administrator/Desktop/qiuxingka-API/report/xml'])
     # os模块运行allure命令，来生成html格式的报告（根据刚刚生成的配置信息）
     os.system("D:/Python3.10.4/Lib/site-packages/allure-2.19.0/bin/allure.bat "
     "generate "
-    "C:/Users/Administrator/Desktop/qiuxingka-API/report/xml "
+    "C:/Users/Administrator/Desktop/qiuxingka-API/report/xml"
     "-o "
     "C:/Users/Administrator/Desktop/qiuxingka-API/report/html")

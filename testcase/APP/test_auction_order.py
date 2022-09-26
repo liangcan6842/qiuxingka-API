@@ -38,7 +38,7 @@ def test_2_delete_order(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_3_select_order(get_token_fixture):
+def test_3_query_order(get_token_fixture):
     """查询订单"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -115,7 +115,7 @@ def test_7_alipay_auction_product_pay(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_8_select_auction_product_detail(get_token_fixture):
+def test_8_query_auction_product_detail(get_token_fixture):
     """查询拍卖产品详情"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {

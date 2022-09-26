@@ -1,6 +1,6 @@
 import pytest,requests,json
 URL = "http://192.168.110.173:8885"
-def test_1_select_auction_product_order(get_token_fixture):
+def test_1_query_auction_product_order(get_token_fixture):
     """查询拍卖产品订单"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -15,7 +15,7 @@ def test_1_select_auction_product_order(get_token_fixture):
     res = json.loads(res)
     print(res)
     assert res["code"] == 200
-def test_2_select_auction_product_detail(get_token_fixture):
+def test_2_query_auction_product_detail(get_token_fixture):
     """查询拍卖产品详情"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
@@ -48,7 +48,7 @@ def test_3_seller_ship(get_token_fixture):
     print(res)
     assert res["code"] == 200
 
-def test_4_select_page(get_token_fixture):
+def test_4_query_page(get_token_fixture):
     """分页查询"""
     # 通过Fixture函数获取get_token_fixture值，即token，再将token添加到请求头中
     headers = {
