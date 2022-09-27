@@ -14,12 +14,12 @@ def test_1_add_group_order(get_token_fixture):
         "id": 3, #商品id
         "addressId": 1, #地址id
         "couponId": 1,  #优惠券id
-        "remark": "924组团订单",  #备注
+        "remark": "927组团订单",  #备注
         "num": 10,  #数量（不需要自选队伍的订单必传）
         "soldModelList": [  #选择的售卖信息（只有选队随机、买队随机需要传此信息）
             {
                 "soldinfoId": 3, #售卖信息id
-                "num": 1  #数量（买队随机数量只能为1）
+                "num": 2  #数量（买队随机数量只能为1）
             }
         ]
     }

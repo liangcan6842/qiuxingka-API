@@ -10,7 +10,6 @@ def test_1_pc_query_list(get_token_fixture):
         "Content-Type": "application/json;charset=utf8",
         "Authorization": get_token_fixture
     }
-
     url = URL + "/v1/platform/total/messageList"
     res = requests.get(url=url, headers=headers).text
     res = json.loads(res)

@@ -26,7 +26,7 @@ def test_2_add_sale_cycle(get_token_fixture):
         "Authorization": get_token_fixture
     }
     data = {
-        "id": 0, #修改碧川
+        "id": 0, #修改必传
         "num": 2 #时间数
     }
     url = URL + "/v1/productTimes/addSalesCycle"
